@@ -21,9 +21,7 @@ vm_start(){
 
 launch_install(){
 	printf "\t\tConnexion à  root (mdp: root) \n"
-        ssh -t user@$COMPLETE_IP "su - root -c \" mv /tmp/install_docker.sh ~/ \" chmod u+x install_docker.sh \"sh install_docker.sh \"" 
-	ssh -t user@$COMPLETE_IP "su - root -c \" chmod u+x install_docker.sh \""
-	ssh -t user@$COMPLETE_IP "su - root -c \" sh install_docker.sh \""
+        ssh -t user@$COMPLETE_IP "su - root -c \" mv /tmp/install_docker.sh ~/ && chmod u+x install_docker.sh && sh install_docker.sh \"" 
 }
 
 

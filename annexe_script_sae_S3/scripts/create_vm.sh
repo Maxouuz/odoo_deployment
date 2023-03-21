@@ -3,12 +3,21 @@
 VMIUT=/home/public/vm/bin/vmiut
 NAME=$1
 DHCP_CPT=0
+DISQUE=$MODELE
+
+if [ $# -eq 2 ];
+ then 
+   DISQUE=$2
+fi
+
+printf "Le disque utilisé sera : $DISQUE\n"
 
 vm_create(){
     printf "\tCréation : " 
+    
 	if [ $($VMIUT lister | grep -c "\b$NAME\b") -eq 0 ];
 		then 
-			$($VMIUT creer $NAME > /dev/null 2>&1) 
+			$($VMIUT creer -d $DISQUE $NAME > /dev/null 2>&1) 
 			printf "OK\n"
 		else  printf "Existe déjà\n" 
 	fi
@@ -68,9 +77,9 @@ vm_ip(){
 }
 
 main(){
-	vm_create && vm_start && dhcp_setup
+	vm_create #&& vm_start && dhcp_setup
 	echo $TMP_IP > /tmp/$NAME
 }
 
 printf "Création et démarrage de la VM $NAME : \n" 
-main
+#main
