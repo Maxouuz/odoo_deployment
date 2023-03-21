@@ -1,7 +1,6 @@
 #!/bin/bash
-. /home/public/vm/vm.env
 
-if [[ $# -ne 2 ]] ; then
+if [ $# -ne 3 ] && [ $# -ne 2 ] ; then
     echo "Nombre invalide d'arguments : attendu <nom_vm> <id_machine>"
     exit 1
 fi
@@ -13,12 +12,13 @@ fi
 
 NAME=$1
 IP=$2
+DISQUE=$3
 DIR=$(dirname "$(realpath "$0")")
 
 
 printf "Création et configuration de la VM %s (192.168.194.%s)\n" "$NAME" "$IP" 
 
-$DIR/create_vm.sh $NAME
+$DIR/create_vm.sh $NAME $DISQUE
 TMP_IP=$(cat /tmp/$NAME)
 $DIR/ssh_config_rsa.sh $TMP_IP
 $DIR/config_vm.sh $NAME $TMP_IP $IP
