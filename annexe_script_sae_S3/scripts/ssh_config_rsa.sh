@@ -8,12 +8,14 @@ PUB_KEY=$HOME/.ssh/id_rsa
 copy_id(){
 	printf "\tPartage de la clef publique avec la machine virtuelle:\n"
 	printf "\t\tConnexion à user (mdp: user)\n" 
+	printf "DEBUG 1\n"
 	ssh-copy-id -i $PUB_KEY user@$REMOTE > /dev/null 2>&1
 	printf "\t\tOK\n" 
 }
 
 ssh_agent(){
 	printf "\tMise en place de l'agent SSH:\n" 
+	printf "DEBUG 2\n"
 	if [ -z "$SSH_AUTH_SOCK" ] ; 
 	then
       		eval $(ssh-agent -s) 
@@ -27,6 +29,7 @@ ssh_agent(){
 
 rsa_key(){
 	printf "\tPrésence de la clef RSA publique : " 
+	printf "DEBUG 4\n"
 	if [ -f "$PUB_KEY" ]; 
 		then
 			printf "OK\n" 

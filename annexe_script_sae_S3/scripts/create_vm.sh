@@ -77,9 +77,9 @@ vm_ip(){
 }
 
 main(){
-	vm_create #&& vm_start && dhcp_setup
+	vm_create && vm_start && dhcp_setup
 	echo $TMP_IP > /tmp/$NAME
 }
 
 printf "Création et démarrage de la VM $NAME : \n" 
-#main
+main
