@@ -1,4 +1,5 @@
 #!/bin/bash
+
 VMIUT=/home/public/vm/bin/vmiut
 vm_stop(){
     printf "\tArrêt de $NAME : " 
