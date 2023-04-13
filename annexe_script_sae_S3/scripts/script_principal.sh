@@ -1,18 +1,22 @@
 #!/bin/bash
 
 NAME='odoo'
-
+IP=51
 creation(){
    printf "premiere config\n"
-   ./create_config.sh odoo 51 /home/public/vm/disque-bullseye-11.6-10go.vdi
+   ./create_config.sh $NAME $IP /home/public/vm/disque-bullseye-11.6-10go.vdi
    restart
-   sh transfer_docker.sh 51 $NAME
+#   ssh-keygen -R "192.168.194.IP" > /dev/null
+   sh transfer_docker.sh $IP $NAME
+   IP=52
    NAME='dataBase'
-   ./create_config.sh $NAME 52 /home/public/vm/disque-bullseye-11.6-10go.vdi
+   ./create_config.sh $NAME $IP /home/public/vm/disque-bullseye-11.6-10go.vdi
    restart
-   ssh -t user@192.168.194.52 "su - root -c \" apt install postgresql \"" 
+#   ssh-keygen -R "192.168.194.$IP" > /dev/null
+   ./transfer_psql.sh $IP $NAME
+    IP=53
  #  NAME='saves'
- #  ./create_config.sh $NAME 53
+ #  ./create_config.sh $NAME $IP
  #  restart
 }
 
@@ -21,5 +25,6 @@ restart(){
    sleep 5
    vmiut start $NAME
    sleep 40
+   ssh -q user@192.168.194.$IP echo "La machine fonctionne" || restart
 }
 creation
