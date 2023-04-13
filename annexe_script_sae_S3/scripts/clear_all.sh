@@ -27,9 +27,6 @@ vm_rm_all(){
     NAME=dataBase
     vm_stop
     vm_remove
-    NAME=traefik
-    vm_stop
-    vm_remove
     NAME=saves
     vm_stop
     vm_remove

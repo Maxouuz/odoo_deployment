@@ -78,7 +78,7 @@ dns
 interfaces
 proxy
 ntp
-update
+#update
 # sudo
 # utilitaires
 printf "FIN\n" 
