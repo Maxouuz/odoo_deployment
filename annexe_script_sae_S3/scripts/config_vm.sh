@@ -35,5 +35,5 @@ sudo_utilities(){
 printf "Exécution du script de configuration\n" 
 transfer
 config
-sudo_utilities
+#sudo_utilities
 printf "\tRedémarrage de $NAME\n" 
