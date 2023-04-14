@@ -43,18 +43,11 @@ ntp(){
     printf "OK\n" 
 }
 
-
-update(){
-	printf "\tMise à jour de la VM:" 
-	apt-get update > /dev/null 2>&1
-	apt-get full-upgrade -y > /dev/null 2>&1 && printf "OK\n" || printf "NOK\n" 
-}
-
 utilitaires(){
 	printf "\tInstallation d'utilitaires:" 
     . /etc/environment
 	apt-get update > /dev/null 2>&1
-	apt-get install -y --fix-missing vim less tree rsync curl
+	apt-get install -y --fix-missing rsync 
     printf "OK\n" 
 }
 
@@ -78,7 +71,6 @@ dns
 interfaces
 proxy
 ntp
-#update
 # sudo
 # utilitaires
 printf "FIN\n" 
