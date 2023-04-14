@@ -15,7 +15,6 @@ vm_start(){
         fi
 
         scp -r install_psql.sh user@$COMPLETE_IP:$OUT
-        scp -r pg_hba user@$COMPLETE_IP:$OUT
         return 0
 }
 
